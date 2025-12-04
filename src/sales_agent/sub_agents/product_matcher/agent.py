@@ -1,6 +1,14 @@
+import os
 from google.adk.agents.llm_agent import Agent
 from google.adk.tools import google_search
+from google.adk.tools import VertexAiSearchTool
 
+SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
+
+pricing_knowledge_base = VertexAiSearchTool(
+    search_engine_id=SEARCH_ENGINE_ID,
+    max_results=10
+)
 instruction = """You are a Solution Architect specializing in Comarch software.
                 Your goal is to select the best product modules for the client's defined pain points.
 
@@ -25,7 +33,7 @@ root_agent = Agent(
     name="product_matcher",
     description="Solution Architect matching client needs to Comarch products.",
     instruction=instruction,
-    tools=[google_search]
+    tools=[google_search,pricing_knowledge_base]
 )
 
 product_matcher_agent = root_agent

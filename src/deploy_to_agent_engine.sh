@@ -1,5 +1,5 @@
 adk deploy agent_engine \
---project="cmr-sandbox-1" \
+--project="prj-cmr-sbx-hackaton-1" \
 --region="us-central1" \
 --staging_bucket="gs://emka-adk-training" \
 --display_name="Sales agent preview 1" \
